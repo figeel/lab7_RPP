@@ -15,6 +15,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Копируем весь код проекта
 COPY . /app/
 
+RUN python manage.py collectstatic --noinput
+
 # Открываем порт, на котором будет работать сервер Django
 EXPOSE 80
 
