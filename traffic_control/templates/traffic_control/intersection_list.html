@@ -1,0 +1,44 @@
+{% extends 'traffic_control/base.html' %}
+
+{% block title %}Перекрестки{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <h2>Перекрестки</h2>
+    </div>
+    <div class="col text-end">
+        <a href="{% url 'intersection-create' %}" class="btn btn-primary">Добавить перекресток</a>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Расположение</th>
+                <th>Дата создания</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for intersection in intersections %}
+            <tr>
+                <td>{{ intersection.name }}</td>
+                <td>{{ intersection.location }}</td>
+                <td>{{ intersection.created_at|date:"d.m.Y H:i" }}</td>
+                <td>
+                    <a href="{% url 'intersection-update' intersection.pk %}" class="btn btn-sm btn-warning">Изменить</a>
+                    <a href="{% url 'intersection-delete' intersection.pk %}" class="btn btn-sm btn-danger">Удалить</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" class="text-center">Нет перекрестков</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %} 

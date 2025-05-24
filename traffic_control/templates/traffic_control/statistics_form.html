@@ -1,0 +1,32 @@
+{% extends 'traffic_control/base.html' %}
+
+{% block title %}
+    {% if object %}Редактирование статистики{% else %}Новая статистика{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <h2>{% if object %}Редактирование статистики{% else %}Новая статистика{% endif %}</h2>
+        <form method="post" class="mt-4">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="mb-3">
+                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                {% if field.name == 'date' %}
+                <div class="form-text mb-2">Формат: ГГГГ-ММ-ДД (например: 2024-05-22)</div>
+                {% elif field.name == 'peak_hour' %}
+                <div class="form-text mb-2">Формат: ЧЧ:ММ (например: 14:30)</div>
+                {% endif %}
+                {{ field.errors }}
+                {{ field }}
+            </div>
+            {% endfor %}
+            <div class="mt-4">
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+                <a href="{% url 'statistics-list' %}" class="btn btn-secondary">Отмена</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %} 
