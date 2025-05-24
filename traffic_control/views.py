@@ -100,7 +100,7 @@ class TrafficLightHistoryListView(LoginRequiredMixin, ListView):
 class TrafficLightHistoryCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = TrafficLightHistory
     template_name = 'traffic_control/history_form.html'
-    fields = ['traffic_light', 'timestamp', 'status', 'notes']
+    fields = ['traffic_light', 'turn_on_time', 'turn_off_time', 'cars_passed', 'cars_waiting']
     success_url = reverse_lazy('history-list')
     permission_required = 'traffic_control.add_trafficlighthistory'
     login_url = 'login'
@@ -108,7 +108,7 @@ class TrafficLightHistoryCreateView(LoginRequiredMixin, PermissionRequiredMixin,
 class TrafficLightHistoryUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = TrafficLightHistory
     template_name = 'traffic_control/history_form.html'
-    fields = ['traffic_light', 'timestamp', 'status', 'notes']
+    fields = ['traffic_light', 'turn_on_time', 'turn_off_time', 'cars_passed', 'cars_waiting']
     success_url = reverse_lazy('history-list')
     permission_required = 'traffic_control.change_trafficlighthistory'
     login_url = 'login'
@@ -130,7 +130,7 @@ class StatisticsListView(LoginRequiredMixin, ListView):
 class StatisticsCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = TrafficStatistics
     template_name = 'traffic_control/statistics_form.html'
-    fields = ['traffic_light', 'date', 'vehicle_count', 'average_wait_time']
+    fields = ['traffic_light', 'date', 'total_cars', 'peak_hour', 'average_wait_time']
     success_url = reverse_lazy('statistics-list')
     permission_required = 'traffic_control.add_trafficstatistics'
     login_url = 'login'
@@ -138,7 +138,7 @@ class StatisticsCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateVi
 class StatisticsUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = TrafficStatistics
     template_name = 'traffic_control/statistics_form.html'
-    fields = ['traffic_light', 'date', 'vehicle_count', 'average_wait_time']
+    fields = ['traffic_light', 'date', 'total_cars', 'peak_hour', 'average_wait_time']
     success_url = reverse_lazy('statistics-list')
     permission_required = 'traffic_control.change_trafficstatistics'
     login_url = 'login'
@@ -160,7 +160,7 @@ class MaintenanceListView(LoginRequiredMixin, ListView):
 class MaintenanceCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = MaintenanceRecord
     template_name = 'traffic_control/maintenance_form.html'
-    fields = ['traffic_light', 'date', 'description', 'cost']
+    fields = ['traffic_light', 'maintenance_date', 'description', 'technician', 'cost']
     success_url = reverse_lazy('maintenance-list')
     permission_required = 'traffic_control.add_maintenancerecord'
     login_url = 'login'
@@ -168,7 +168,7 @@ class MaintenanceCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateV
 class MaintenanceUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = MaintenanceRecord
     template_name = 'traffic_control/maintenance_form.html'
-    fields = ['traffic_light', 'date', 'description', 'cost']
+    fields = ['traffic_light', 'maintenance_date', 'description', 'technician', 'cost']
     success_url = reverse_lazy('maintenance-list')
     permission_required = 'traffic_control.change_maintenancerecord'
     login_url = 'login'
