@@ -25,7 +25,11 @@ SECRET_KEY = 'django-insecure-6ocxst2q(fp)w**f981_2@wy0x9+5g*x7@b^$)$83t*w9k!r1*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'lab7-rpp-figeel.amvera.io',       # ваш текущий домен
+    '.amvera.io',                      # все поддомены amvera.io
+    'localhost', '127.0.0.1'           # для локальной работы
+]
 
 
 # Application definition
