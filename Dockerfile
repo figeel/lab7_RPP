@@ -16,7 +16,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . /app/
 
 # Открываем порт, на котором будет работать сервер Django
-EXPOSE 8000
+EXPOSE 80
 
 # Команда, которая будет выполняться при запуске контейнера
 # Запускаем сервер разработки Django
