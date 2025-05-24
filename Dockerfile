@@ -20,4 +20,4 @@ EXPOSE 8000
 
 # Команда, которая будет выполняться при запуске контейнера
 # Запускаем сервер разработки Django
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"] 
+CMD ["gunicorn", "traffic_light_system.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3"]
