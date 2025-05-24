@@ -31,6 +31,12 @@ ALLOWED_HOSTS = [
     'localhost', '127.0.0.1'           # для локальной работы
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://lab7-rpp-figeel.amvera.io",
+    # при необходимости можно добавить другие адреса:
+    "https://*.amvera.io"
+]
+
 
 # Application definition
 
